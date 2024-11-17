@@ -5,8 +5,8 @@
   <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %></h1>
+<h1>Welcome</h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
+<a href="form.jsp">Go to Form</a>
 </body>
 </html>
