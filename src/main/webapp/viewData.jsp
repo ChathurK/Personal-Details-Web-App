@@ -20,6 +20,17 @@
 <body>
 <div class="container mt-5">
     <h1 class="text-center">Submitted Data</h1>
+
+    <!-- Search Form -->
+    <form class="mt-3" method="get" action="viewData.jsp">
+        <div class="form-group d-flex justify-content-center">
+            <input type="text" name="searchQuery" class="form-control w-50" placeholder="Search by Name or Email"
+                   value="<%= request.getParameter("searchQuery") != null ? request.getParameter("searchQuery") : "" %>">
+            <button type="submit" class="btn btn-primary ml-2">Search</button>
+        </div>
+    </form>
+
+
     <table class="table table-bordered mt-4">
         <thead class="thead-dark">
         <tr>
@@ -48,7 +59,12 @@
                 // Get all <user> elements
                 NodeList nodeList = doc.getElementsByTagName("user");
 
+                // Search query
+                String searchQuery = request.getParameter("searchQuery");
+                searchQuery = searchQuery != null ? searchQuery.trim().toLowerCase() : "";
+
                 // Loop through and display each user
+                boolean dataFound = false;
                 for (int i = 0; i < nodeList.getLength(); i++) {
                     Element user = (Element) nodeList.item(i);
 
@@ -56,12 +72,25 @@
                     String name = user.getElementsByTagName("name").item(0).getTextContent();
                     String age = user.getElementsByTagName("age").item(0).getTextContent();
                     String email = user.getElementsByTagName("email").item(0).getTextContent();
+
+                    // Check if the record matches the search query
+                    if (searchQuery.isEmpty() || name.toLowerCase().contains(searchQuery) || email.toLowerCase().contains(searchQuery)) {
+                        dataFound = true;
         %>
         <tr>
             <td><%= id %></td>
             <td><%= name %></td>
             <td><%= age %></td>
             <td><%= email %></td>
+        </tr>
+        <%
+                }
+            }
+
+            if (!dataFound) {
+        %>
+        <tr>
+            <td colspan="4" class="text-center">No matching records found.</td>
         </tr>
         <%
                 }
