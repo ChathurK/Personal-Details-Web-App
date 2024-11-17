@@ -82,6 +82,8 @@
             <td><%= name %></td>
             <td><%= age %></td>
             <td><%= email %></td>
+            <td><a href="updateForm.jsp?id=<%= id %>" class="btn btn-warning btn-sm">Edit</a></td>
+            <td><a href="delete-servlet?id=<%= id %>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this entry?');">Delete</a></td>
         </tr>
         <%
                 }
@@ -90,14 +92,14 @@
             if (!dataFound) {
         %>
         <tr>
-            <td colspan="4" class="text-center">No matching records found.</td>
+            <td colspan="6" class="text-center">No matching records found.</td>
         </tr>
         <%
                 }
             } catch (Exception e) {
 //                throw new RuntimeException(e);
                     logger.log(Level.SEVERE, "Error reading data", e);
-                    out.println("<tr><td colspan='4'>An error occurred while reading data. Please try again.</td></tr>");
+                    out.println("<tr><td colspan='6'>An error occurred while reading data. Please try again.</td></tr>");
             }
         %>
         </tbody>
