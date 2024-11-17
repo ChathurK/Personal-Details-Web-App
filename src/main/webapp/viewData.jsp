@@ -73,6 +73,7 @@
         %>
         </tbody>
     </table>
+    <a href="form.jsp" class="btn btn-primary">Submit New Data</a>
 </div>
 </body>
 </html>
