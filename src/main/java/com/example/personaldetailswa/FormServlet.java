@@ -33,7 +33,7 @@ public class FormServlet extends HttpServlet {
         String email = request.getParameter("email");
 
         // Step 2: Server side validation
-        if (name.isEmpty() || age.isEmpty() || !age.matches("\\d+") || email.isEmpty()) {
+        if (name.isEmpty() || age.isEmpty() || !age.matches("\\d+") || Integer.parseInt(age) < 1 || Integer.parseInt(age) > 120 || email.isEmpty()) {
             response.getWriter().println("Invalid data. Please try again.");    // IOException -> getWriter()
             return;
         }
