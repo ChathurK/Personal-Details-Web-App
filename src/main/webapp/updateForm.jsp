@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: kumar
-  Date: 18-Nov-24
-  Time: 2:34 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="javax.xml.parsers.DocumentBuilder" %>
 <%@ page import="javax.xml.parsers.DocumentBuilderFactory" %>
 <%@ page import="org.w3c.dom.Document" %>
@@ -42,12 +35,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Data</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container mt-5">
-    <h1 class="text-center">Update Data</h1>
+    <header class="bg-success text-white text-center py-3 mb-4">
+        <h1 class="text-center">Update Data</h1>
+    </header>
+<div class="container" style="max-width: 600px;">
     <form action="update-servlet" method="post">
         <input type="hidden" name="id" value="<%= id %>">
         <div class="form-group">

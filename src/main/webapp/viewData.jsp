@@ -4,40 +4,40 @@
 <%@ page import="org.w3c.dom.NodeList" %>
 <%@ page import="org.w3c.dom.Element" %>
 <%@ page import="java.util.logging.Logger" %>
-<%@ page import="java.util.logging.Level" %><%--
-  Created by IntelliJ IDEA.
-  User: kumar
-  Date: 18-Nov-24
-  Time: 12:38 AM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.logging.Level" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>View Data</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container mt-5">
+<header class="bg-success text-white text-center py-3 mb-4">
     <h1 class="text-center">Submitted Data</h1>
+</header>
+<div class="container">
 
     <!-- Search Form -->
     <form class="mt-3" method="get" action="viewData.jsp">
         <div class="form-group d-flex justify-content-center">
-            <input type="text" name="searchQuery" class="form-control w-50" placeholder="Search by Name or Email"
+            <input type="text" name="searchQuery" class="form-control w-100 mr-2" placeholder="Search by Name or Email"
                    value="<%= request.getParameter("searchQuery") != null ? request.getParameter("searchQuery") : "" %>">
-            <button type="submit" class="btn btn-primary ml-2">Search</button>
+            <button type="submit" class="btn btn-primary">Search</button>
         </div>
     </form>
 
 
-    <table class="table table-bordered mt-4">
-        <thead class="thead-dark">
+    <table class="table table-bordered mt-3">
+        <thead class="bg-secondary text-white">
         <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Age</th>
             <th>Email</th>
+            <th colspan="2">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -104,7 +104,7 @@
         %>
         </tbody>
     </table>
-    <a href="form.jsp" class="btn btn-primary">Submit New Data</a>
+    <a href="form.jsp" class="btn btn-primary btn-block">Submit New Data</a>
 </div>
 </body>
 </html>
