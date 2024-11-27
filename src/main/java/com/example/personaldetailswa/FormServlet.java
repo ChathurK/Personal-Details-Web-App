@@ -44,12 +44,14 @@ public class FormServlet extends HttpServlet {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();  // ParserConfigurationException -> newDocumentBuilder()
             Document doc;
-            
+
+            // Check if the file exists
             if (file.exists()) {
                 // Parse existing XML
                 doc = dBuilder.parse(file); // SAXException -> parse()
                 doc.getDocumentElement().normalize();
             } else {
+                // Create new XML
                 doc = dBuilder.newDocument();
                 Element rootElement = doc.createElement("users");
                 doc.appendChild(rootElement);
@@ -61,7 +63,7 @@ public class FormServlet extends HttpServlet {
             // Create new user element
             Element newUser = doc.createElement("user");
 
-            //
+            // Create and append id element using current timestamp
             Element userId = doc.createElement("id");
             userId.appendChild(doc.createTextNode(String.valueOf(System.currentTimeMillis())));
             newUser.appendChild(userId);

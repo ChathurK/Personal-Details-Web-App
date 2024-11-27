@@ -5,6 +5,8 @@
 <%@ page import="org.w3c.dom.Element" %>
 
 <%
+    /*This he scriptlet retrieves the id parameter from the request and initializes variables for name, age, and email.
+    It then attempts to parse an XML file to find the user data corresponding to the provided id.*/
     String id = request.getParameter("id");
     String xmlFilePath = application.getRealPath("/") + "data.xml";
     String name = "", age = "", email = "";
@@ -44,6 +46,7 @@
         <h1 class="text-center">Update Data</h1>
     </header>
 <div class="container" style="max-width: 600px;">
+    <%--The form fields are pre-filled with the values retrieved from the XML file, allowing update its information.--%>
     <form action="update-servlet" method="post">
         <input type="hidden" name="id" value="<%= id %>">
         <div class="form-group">

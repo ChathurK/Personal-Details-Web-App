@@ -21,15 +21,17 @@ import java.io.IOException;
 @WebServlet (name = "UpdateServlet", value = ("/update-servlet"))
 public class UpdateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Retrieve form data
         String id = request.getParameter("id");
         String name = request.getParameter("name");
         String age = request.getParameter("age");
         String email = request.getParameter("email");
 
+        // Path to the XML file
         String xmlFilePath = getServletContext().getRealPath("/") + "data.xml";
 
         try {
-            // Parse the XML file
+            // Parse the XML file and normalize the structure
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse(new File(xmlFilePath));
@@ -37,6 +39,9 @@ public class UpdateServlet extends HttpServlet {
 
             // Find the record to update
             NodeList nodeList = doc.getElementsByTagName("user");
+
+            /*Loops through each <user> element, checking if the id matches the provided id.
+            If a match is found, the corresponding user element's name, age, and email values are updated.*/
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Element user = (Element) nodeList.item(i);
                 String userId = user.getElementsByTagName("id").item(0).getTextContent();
@@ -48,13 +53,14 @@ public class UpdateServlet extends HttpServlet {
                 }
             }
 
-            // Save changes back to XML file
+            // The updated XML document is saved back to the file
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
             StreamResult result = new StreamResult(new File(xmlFilePath));
             transformer.transform(source, result);
 
+            // Redirect to viewData.jsp to display the updated data
             response.sendRedirect("viewData.jsp");
         } catch (Exception e) {
             response.getWriter().println("Error updating data: " + e.getMessage());

@@ -45,6 +45,10 @@
             Logger logger = Logger.getLogger("MyLogger");
 
             try {
+                /*The JSP scriptlet retrieves and parses the XML file containing the data.
+                It uses the DocumentBuilderFactory and DocumentBuilder classes to parse the XML file and obtain a Document object.
+                It then normalizes the XML structure and retrieves all <user> elements from the document.*/
+
                 // Path to the xml file
                 String xmlFilePath = application.getRealPath("/") + "data.xml";
 
@@ -63,7 +67,8 @@
                 String searchQuery = request.getParameter("searchQuery");
                 searchQuery = searchQuery != null ? searchQuery.trim().toLowerCase() : "";
 
-                // Loop through and display each user
+                /*The scriptlet then loops through each <user> element, extracting the ID, Name, Age, and Email values.
+                It checks if the record matches the search query and displays the data if it does.*/
                 boolean dataFound = false;
                 for (int i = 0; i < nodeList.getLength(); i++) {
                     Element user = (Element) nodeList.item(i);

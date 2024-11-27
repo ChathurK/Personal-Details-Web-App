@@ -10,6 +10,8 @@
 <header class="bg-success text-white text-center py-3 mb-4">
     <h1>Data Collection Form</h1>
 </header>
+
+<!-- Form -->
 <div class="container" style="max-width: 600px;">
     <form action="submit" method="post">
         <div class="form-group">
@@ -27,6 +29,8 @@
         <button type="submit" class="btn btn-primary btn-block">Submit</button>
     </form>
     <br>
+
+    <!-- Link to viewData.jsp -->
     <a href="viewData.jsp" class="btn btn-secondary btn-block">View Submitted Data</a>
 </div>
 </body>
